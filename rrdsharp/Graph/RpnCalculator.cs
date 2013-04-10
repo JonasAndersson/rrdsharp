@@ -28,23 +28,23 @@ namespace RrdSharp.Graph
 	internal class RpnCalculator 
 	{
 	
-		internal const byte TKN_CONSTANT		= 0;
+		internal const byte TKN_CONSTANT	= 0;
 		internal const byte TKN_DATASOURCE	= 1;
-		internal const byte TKN_PLUS			= 2;
-		internal const byte TKN_MINUS			= 3;
-		internal const byte TKN_MULTIPLY		= 4;
+		internal const byte TKN_PLUS		= 2;
+		internal const byte TKN_MINUS		= 3;
+		internal const byte TKN_MULTIPLY	= 4;
 		internal const byte TKN_DIVIDE		= 5;
 		internal const byte TKN_MOD			= 6;
 		internal const byte TKN_SIN			= 7;
 		internal const byte TKN_COS			= 8;
 		internal const byte TKN_LOG			= 9;
 		internal const byte TKN_EXP			= 10;
-		internal const byte TKN_FLOOR			= 11;
-		internal const byte TKN_CEIL			= 12;
-		internal const byte TKN_ROUND			= 13;
+		internal const byte TKN_FLOOR		= 11;
+		internal const byte TKN_CEIL		= 12;
+		internal const byte TKN_ROUND		= 13;
 		internal const byte TKN_POW			= 14;
 		internal const byte TKN_ABS			= 15;
-		internal const byte TKN_SQRT			= 16;
+		internal const byte TKN_SQRT		= 16;
 		internal const byte TKN_RANDOM		= 17;
 		internal const byte TKN_LT			= 18;
 		internal const byte TKN_LE			= 19;
@@ -54,21 +54,22 @@ namespace RrdSharp.Graph
 		internal const byte TKN_IF			= 23;
 		internal const byte TKN_MIN			= 24;
 		internal const byte TKN_MAX			= 25;
-		internal const byte TKN_LIMIT			= 26;
+		internal const byte TKN_LIMIT		= 26;
 		internal const byte TKN_DUP			= 27;
 		internal const byte TKN_EXC			= 28;
 		internal const byte TKN_POP			= 29;
 		internal const byte TKN_UN			= 30;
-		internal const byte TKN_UNKN			= 31;
+		internal const byte TKN_UNKN		= 31;
 		internal const byte TKN_NOW			= 32;
-		internal const byte TKN_TIME			= 33;
+		internal const byte TKN_TIME		= 33;
 		internal const byte TKN_PI			= 34;
-		internal const byte TKN_E				= 35;
+		internal const byte TKN_E			= 35;
 		internal const byte TKN_AND			= 36;
 		internal const byte TKN_OR			= 37;
 		internal const byte TKN_XOR			= 38;
 		internal const byte TKN_SAMPLES		= 39;
-		internal const byte TKN_STEP			= 40;
+		internal const byte TKN_STEP	    = 40;
+        internal const byte TKN_TREND       = 41;
 		
 		private double step;
 		private Source[] sources;
@@ -294,6 +295,12 @@ namespace RrdSharp.Graph
 					case TKN_STEP:
 						Push( step );
 						break;
+
+                    case TKN_TREND:
+                        double value = Pop();
+                        double samples = Pop();
+                        Push(value/samples);
+                        break;
 				}
 			}
 			

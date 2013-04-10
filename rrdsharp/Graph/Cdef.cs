@@ -142,6 +142,8 @@ namespace RrdSharp.Graph
 					tokens[i]		= RpnCalculator.TKN_OR;
 				else if ( tkn.Equals("XOR") )
 					tokens[i]		= RpnCalculator.TKN_XOR;
+				else if ( tkn.Equals("TREND") )
+					tokens[i]		= RpnCalculator.TKN_TREND;
 				else
 					throw new RrdException("Unknown token enocuntered: " + tkn);	
 			
