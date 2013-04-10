@@ -86,14 +86,14 @@ namespace RrdSharp.Graph
 			{
                 if (gridStep <= 0d) gridStep = 0.5d;
                 if (labelStep <= 0d) gridStep = 1d;
-                while (gridStep < 0.5)
-                {
-                    gridStep *= 10;
-                }
-                while (labelStep < 1)
-                {
-                    labelStep *= 10;
-                }
+                //while (gridStep < 0.5)
+                //{
+                //    gridStep *= 10;
+                //}
+                //while (labelStep < 1)
+                //{
+                //    labelStep *= 10;
+                //}
 
 				if ( minPoint < majPoint )
 				{
