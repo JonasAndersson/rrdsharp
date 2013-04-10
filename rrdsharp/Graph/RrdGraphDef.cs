@@ -49,7 +49,8 @@ namespace RrdSharp.Graph
 		private bool frontGrid				= true;							// show grid in front of the chart (default: yes)
 		private bool antiAliasing			= true;							// use anti-aliasing for the chart (default: yes)
 		private bool showLegend				= true;							// show legend and comments (default: yes)
-		private bool drawSignature			= true;							// show RrdShap url signature (default: yes)
+        private bool drawSignature          = true;							// show RrdShap url signature (default: yes)
+        private bool drawCreationDate       = true;							// show when graph was generated (default: yes)
 			
 		private Color backColor				= Color.FromArgb(245,245,245);	// variation of light gray
 		private Color canvasColor			= Color.White;					// white
@@ -493,6 +494,21 @@ namespace RrdSharp.Graph
 				this.drawSignature = value;
 			}
 		}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ShowCreationDate
+        {
+            get
+            {
+                return this.drawCreationDate;
+            }
+            set
+            {
+                this.drawCreationDate = value;
+            }
+        }
 		
 		/// <summary>
 		/// 

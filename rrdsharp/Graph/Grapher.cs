@@ -911,7 +911,7 @@ namespace RrdSharp.Graph
 			if ( !graphDef.ShowSignature )
 				return;
 			
-			string sig = "RrdSharp v. 0.1"; 
+			string sig = "RrdSharp v. 0.1";
 			defaultBrush.Color = Color.Gray;
 			Font sigfnt =  new Font("Courier New", 9, FontStyle.Regular,GraphicsUnit.Pixel);
 		
@@ -921,6 +921,12 @@ namespace RrdSharp.Graph
 			g.DrawString( sig, sigfnt, defaultBrush, 5,  -imgWidth + 2 );	
 			//g.TextRenderingHint = TextRenderingHint.AntiAlias;
 			g.RotateTransform((float) -90.0 );
+
+            if (!graphDef.ShowCreationDate)
+                return;
+
+            sig = String.Format("Generated at {0} {1} UTC", DateTime.UtcNow.ToString("yyyy-dd-MM"), DateTime.UtcNow.ToString("HH:mm:ss"));
+            g.DrawString(sig, sigfnt, defaultBrush, 3, imgHeight - 15);
 		}	
 
 		private void GraphString( Graphics g, Font fnt, string str, int x, int y )
