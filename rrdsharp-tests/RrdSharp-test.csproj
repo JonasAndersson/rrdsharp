@@ -81,10 +81,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RrdSharp">
-      <Name>RrdSharp</Name>
-      <HintPath>..\rrdsharp\bin\Release\RrdSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -106,6 +102,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Content Include="App.ico" />
+    <Content Include="battery_2h.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -131,6 +128,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rrdsharp\RrdSharp.csproj">
+      <Project>{61B3CAC6-F284-4DE4-A307-F58A5D3B51E7}</Project>
+      <Name>RrdSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
