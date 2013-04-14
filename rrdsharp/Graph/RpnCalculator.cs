@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using RrdSharp.Core;
 
 namespace RrdSharp.Graph
@@ -74,6 +75,11 @@ namespace RrdSharp.Graph
 		private double step;
 		private Source[] sources;
 		private ArrayList stack = new ArrayList();
+
+        // For TREND CDEF
+        //  jonas@haksberg.net - 2013-04-12
+        private List<double> TrendValues = new List<double>();
+        private long TrendWindowStart = 0;
 		
 		
 		internal RpnCalculator( Source[] sources, double step )
@@ -297,9 +303,38 @@ namespace RrdSharp.Graph
 						break;
 
                     case TKN_TREND:
+                        double seconds = Pop();
                         double value = Pop();
-                        double samples = Pop();
-                        Push(value/samples);
+                        double trend = Double.NaN;
+
+                        // Is this the first value?
+                        if (this.TrendWindowStart == 0)
+                            this.TrendWindowStart = timestamp;
+
+                        // Add new value
+                        this.TrendValues.Add(value);
+
+                        // To we have a full window?
+                        if (timestamp >= this.TrendWindowStart + seconds)
+                        {
+                            //this.TrendWindowStart = timestamp;
+
+                            double sum = 0;
+                            // Sum up all values
+                            for (int v = 0; v < this.TrendValues.Count; v++)
+                            {
+                                sum += this.TrendValues[v];
+                            }
+
+                            // Calc average, i.e. trend
+                            trend = sum / this.TrendValues.Count;
+
+                            // Remove oldest value
+                            this.TrendValues.RemoveAt(0);
+                        }
+                        
+                        // Return the calculated point
+                        Push(trend);
                         break;
 				}
 			}
