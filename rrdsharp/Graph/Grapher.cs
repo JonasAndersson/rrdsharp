@@ -925,7 +925,7 @@ namespace RrdSharp.Graph
             if (!graphDef.ShowCreationDate)
                 return;
 
-            sig = String.Format("Generated at {0} {1} UTC", DateTime.UtcNow.ToString("yyyy-dd-MM"), DateTime.UtcNow.ToString("HH:mm:ss"));
+            sig = String.Format("Generated at {0} {1} UTC", DateTime.UtcNow.ToString("yyyy-MM-dd"), DateTime.UtcNow.ToString("HH:mm:ss"));
             g.DrawString(sig, sigfnt, defaultBrush, 3, imgHeight - 15);
 		}	
 

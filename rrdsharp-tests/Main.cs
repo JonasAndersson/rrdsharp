@@ -18,7 +18,7 @@ namespace RrdSharpTests
             //rstest.Test2();
             //rstest.Test3();
 			//rstest.Test4();
-            rstest.JonasTest();
+            //rstest.JonasTest();
             rstest.JonasTest2();
 
 			// Uncomment to run the stress-test.  Requires stress-test.txt sample data
@@ -137,17 +137,17 @@ namespace RrdSharpTests
             rrd.Close();
 
             // Create new graph for the last 12 hours
-            RrdGraphDef gdef = new RrdGraphDef(new DateTime(2013, 05, 31, 12, 00, 00), new DateTime(2013, 05, 31, 12, 59, 59));
+            RrdGraphDef gdef = new RrdGraphDef(new DateTime(2013, 05, 31, 12, 00, 00), new DateTime(2013, 05, 31, 18, 59, 59));
             gdef.Title = "Battery voltage";
             gdef.VerticalLabel = "U (V)";
             gdef.SetValueAxis(1.0, 1.0);
             gdef.SetGridRange(1.000, 5.000, true);
             gdef.Datasource("vbat", "jonas.rrd", "battery", "LAST");
-            gdef.Datasource("vbat_avg", "jonas.rrd", "battery", "AVERAGE");
+            //gdef.Datasource("vbat_avg", "jonas.rrd", "battery", "AVERAGE");
             gdef.Datasource("vbat_trend", "vbat,900,TREND");
             gdef.Line("vbat", System.Drawing.Color.Green, "Battery voltage", 1);
-            gdef.Line("vbat_avg", System.Drawing.Color.Red, "Average over 15 min", 1);
-            gdef.Line("vbat_trend", System.Drawing.Color.Orange, "Trend over 15 min", 1);
+            //gdef.Line("vbat_avg", System.Drawing.Color.Red, "Average over 15 min", 1);
+            gdef.Line("vbat_trend", System.Drawing.Color.Red, "Trend over 15 min", 1);
             gdef.Gprint("vbat", "LAST", "Current: @2V@r");
             gdef.Gprint("vbat", "AVERAGE", "Average: @2V@r");
             gdef.Gprint("vbat", "MAX", "Max: @2V@r");
